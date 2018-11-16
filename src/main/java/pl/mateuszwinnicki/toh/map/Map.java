@@ -1,7 +1,6 @@
 package pl.mateuszwinnicki.toh.map;
 
 import pl.mateuszwinnicki.toh.place.Place;
-import pl.mateuszwinnicki.toh.place.PlaceFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,13 +13,13 @@ public class Map {
         this.places = places;
     }
 
-    List<Direction> possibleDirections(Position position) {
+    public List<Direction> possibleDirections(Position position) {
         var directions = new ArrayList<Direction>();
         if(places[position.getX()+1][position.getY()].placeInfo().travelPossible()) {
-            directions.add(Direction.WEST);
+            directions.add(Direction.EAST);
         }
         if(places[position.getX()-1][position.getY()].placeInfo().travelPossible()) {
-            directions.add(Direction.EAST);
+            directions.add(Direction.WEST);
         }
         if(places[position.getX()][position.getY()+1].placeInfo().travelPossible()) {
             directions.add(Direction.NORTH);
@@ -31,7 +30,7 @@ public class Map {
         return directions;
     }
 
-    Place placeAt(Position position) {
+    public Place placeAt(Position position) {
         return places[position.getX()][position.getY()];
     }
 
